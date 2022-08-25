@@ -38,7 +38,92 @@
            Height = "500"
            width = "500">
 <p style = "color: red; font-size: 15 px; font-family: 'Courier New';"> Chief of Finance </p> 
+      
 
+<button id="question-1-submit">Submit</button>
+    </div>
+
+    <div>
+      <h2>Question 2</h2>
+      <p>Lorem ipsum dolor sit amet,</p>
+      <label>
+        This is a textarea
+        <textarea></textarea>
+      </label>
+      <button id="question-2-submit">Submit</button>
+    </div>
+
+    <div>
+      <h2>Question 3</h2>
+      <p>Lorem ipsum dolor sit amet,</p>
+
+      <label>
+        <input type="radio" name="question-3" />
+        Choice 1
+      </label>
+      <label>
+        <input type="radio" name="question-3" />
+        Choice 2
+      </label>
+      <label>
+        <input type="radio" name="question-3" />
+        Choice 3
+      </label>
+      <label>
+        <input type="radio" name="question-3" />
+        Choice 4
+      </label>
+
+      <button id="question-3-submit">Submit</button>
+    </div>
+  </body>
+  <script>
+    function displayRadioValue(question) {
+      var ele = document.getElementsByName(question);
+      var value;
+      for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked === true) {
+          value = ele[i].value;
+        }
+      }
+
+      return value;
+    }
+    function submitQuestion1() {
+      console.log('submit');
+      const val = displayRadioValue('question-1');
+
+      // Update firebase
+      // {
+      //   user1: {
+      //     question1: true,
+      //     question2: false
+      //   },
+      //   user2: {
+      //     question1: false,
+      //     question2: true
+      //   }
+      // }
+
+      const feedbackCorrect = document.getElementById('question-1-feedback-correct');
+      const feedbackIncorrect = document.getElementById('question-1-feedback-incorrect');
+      if (val === '3') {
+        feedbackCorrect.style.display = 'block';
+        feedbackIncorrect.style.display = 'none';
+      } else {
+        feedbackIncorrect.style.display = 'block';
+        feedbackCorrect.style.display = 'none';
+      }
+      // if (val === '3') {
+      //   alert('correct');
+      // } else {
+      //   alert('incorrect');
+      // }
+    }
+
+    const submitButton1 = document.getElementById('question-1-submit');
+    submitButton1.addEventListener('click', submitQuestion1);
+  </script>
  </body>
 </html>
 
